@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <title>Demo of vue-select</title>
+  <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/select2/4.0.0/css/select2.css">
+  <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://select2.github.io/select2-bootstrap-theme/css/select2-bootstrap.css">
+</head>
+
+<body>
+  <h1 class="text-center">Demo of vue-select</h1>
+  <div class="container" id="app">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label for="select1" class="col-sm-3 control-label">
+          A simple select:
+        </label>
+        <div class="col-sm-5">
+          <vue-select name="select1" options="{{options1}}" model="{{@ selected1}}">
+          </vue-select>
+        </div>
+        <div class="col-sm-4">
+          <p class="form-control-static">
+            Selected: <span>{{selected1}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="select2" class="col-sm-3 control-label">
+          A select with names:
+        </label>
+        <div class="col-sm-5">
+          <vue-select name="select2" options="{{options2}}" model="{{@ selected2}}">
+          </vue-select>
+        </div>
+        <div class="col-sm-4">
+          <p class="form-control-static">
+            Selected: <span>{{selected2}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="select3" class="col-sm-3 control-label">
+          A searchable select with groups:
+        </label>
+        <div class="col-sm-5">
+          <vue-select name="select3" options="{{options3}}" model="{{@ selected3}}"
+                      searchable="true">
+          </vue-select>
+        </div>
+        <div class="col-sm-4">
+          <p class="form-control-static">
+            Selected: <span>{{selected3}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+  <script type="text/javascript" src="http://cdn.bootcss.com/select2/4.0.0/js/select2.js"></script>
+  <script type="text/javascript" src="./demo.all.js"></script>
+</body>
+</html>
