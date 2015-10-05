@@ -10,7 +10,9 @@ A Vue.js component implementing the select control with the [jQuery select2 plug
 
 # Demo
 
-[Demo of vue-select]().
+The demo page is [HERE](https://haixing-hu.github.io/vue-select/demo.html).
+
+![Screenshot](screenshot.png)
 
 # Requirements
 
