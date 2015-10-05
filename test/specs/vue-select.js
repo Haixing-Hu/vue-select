@@ -27,7 +27,7 @@ var getVM = function(rootId, initResult1, initResult2, initResult3) {
 describe("vue-select", function() {
 
   describe("static render", function() {
-    var VM = getVM("static-render", "", "value2", "value6");
+    var VM = getVM("static-render", null, "value2", "value6");
     var vm = new VM();
 
     it("select1", function(done) {
@@ -56,7 +56,7 @@ describe("vue-select", function() {
         assert.equal(result1.text(), "");
 
         // check vm data
-        assert.equal(vm.result1, "");
+        assert.equal(vm.result1, null);
 
         done();
       });
@@ -172,7 +172,13 @@ describe("vue-select", function() {
         vm.$nextTick(function() {
           assert.equal(select2.val(), "value1");
           assert.equal(select2Text.text(), "name1");
-          done();
+          // change the vm
+          vm.result2 = null;
+          vm.$nextTick(function() {
+            assert.equal(select2.val(), null);
+            assert.equal(select2Text.text(), "");
+            done();
+          });
         });
       });
     });

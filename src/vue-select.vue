@@ -34,7 +34,6 @@ module.exports = {
       required: true
     },
     model: {
-      type: String,
       required: true,
       twoWay: true
     },

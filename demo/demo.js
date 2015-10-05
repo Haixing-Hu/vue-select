@@ -5,7 +5,7 @@ var vm = new Vue({
     "demo": require("./demo.vue")
   },
   data: {
-    result1: "",
+    result1: null,
     result2: "value2",
     result3: "value6"
   }

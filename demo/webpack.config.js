@@ -13,7 +13,7 @@ var VueLoader = require('vue-loader');
 
 module.exports = {
   entry: {
-    "demo": "./demo.js"
+    "demo": path.join(__dirname, "demo.js")
   },
   module: {
     loaders: [
@@ -36,7 +36,7 @@ module.exports = {
     new webpack.BannerPlugin(banner)
   ],
   output: {
-    path: "./",
+    path: __dirname,
     filename: "[name].all.js",
     sourceMapFilename: "[file].map"
   },

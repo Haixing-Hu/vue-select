@@ -3,7 +3,7 @@ var gulp = require("gulp");
 var del = require("del");
 var gutil = require("gulp-util");
 var webpack = require("webpack");
-var webpackConfig = require("./webpack.config.js");
+var webpackConfig = require("./demo/webpack.config.js");
 var runSequence = require("run-sequence");
 var Server = require('karma').Server;
 var pkg = require("./package.json");
@@ -44,7 +44,7 @@ gulp.task("webpack", function(done) {
       "NODE_ENV": JSON.stringify("production")
     }
   }), new webpack.optimize.UglifyJsPlugin());
-  webpackProdConfig.output.filename = "[name].min.js";
+  webpackProdConfig.output.filename = "[name].all.min.js";
   // run webpack
   webpack(webpackProdConfig, function(err, stats) {
     if(err) throw new gutil.PluginError("webpack:build", err);
@@ -89,7 +89,7 @@ gulp.task("build-dev", function (done) {
   runSequence(
     "clean",
     "test:coverage",
-    // "webpack-dev",
+    "webpack-dev",
   done);
 });
 
@@ -97,7 +97,7 @@ gulp.task("build", function (done) {
   runSequence(
     "clean",
     "test:coveralls",
-    // "webpack-dev",
+    "webpack-dev",
     // "webpack",
   done);
 });
