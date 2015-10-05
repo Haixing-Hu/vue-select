@@ -9,7 +9,7 @@ var banner = pkg.name + " v" + version + "\n" +
   "(c) " + new Date().getFullYear() +
   " " + pkg.author.name + "\n" +
   "Released under the " + pkg.license + " License.";
-var vue = require('vue-loader');
+var VueLoader = require('vue-loader');
 
 module.exports = {
   entry: {
@@ -17,7 +17,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.vue$/, loader: vue.withLoaders({html: "raw"}) } // use raw-loader to process HTML
+      { test: /\.vue$/, loader: VueLoader.withLoaders({html: "raw"}) } // use raw-loader to process HTML
     ]
   },
   resolve: {

@@ -49,72 +49,32 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Vue = __webpack_require__(2);
-
+	var Vue = __webpack_require__(3);
 
 	var vm = new Vue({
-	  el: "#app",
 	  components: {
-	    "vue-select": __webpack_require__(4)
+	    "demo": __webpack_require__(5)
 	  },
 	  data: {
-	    options1: [
-	      "value1",
-	      "value2",
-	      "value3"
-	    ],
-	    options2: [{
-	      text: "name1",
-	      value: "value1"
-	    }, {
-	      text: "name2",
-	      value: "value2"
-	    }, {
-	      text: "name3",
-	      value: "value3"
-	    }],
-	    options3: [{
-	      label: "group1",
-	      options: [{
-	        text: "name1",
-	        value: "value1"
-	      }, {
-	        text: "name2",
-	        value: "value2"
-	      }, {
-	        text: "name3",
-	        value: "value3"
-	      }]
-	    }, {
-	      label: "group2",
-	      options: [{
-	        text: "name4",
-	        value: "value4"
-	      }, {
-	        text: "name5",
-	        value: "value5"
-	      }, {
-	        text: "name6",
-	        value: "value6"
-	      }]
-	    }],
-	    selected1: "",
-	    selected2: "",
-	    selected3: ""
+	    result1: "",
+	    result2: "value2",
+	    result3: "value6"
 	  }
 	});
 
+	vm.$mount("#app");
 
 
 /***/ },
 /* 1 */,
-/* 2 */
+/* 2 */,
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(3);
+	module.exports = __webpack_require__(4);
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -10317,15 +10277,78 @@
 	;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(5)
-	module.exports.template = __webpack_require__(6)
+	module.exports = __webpack_require__(6)
+	module.exports.template = __webpack_require__(10)
 
 
 /***/ },
-/* 5 */
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = {
+	  inherit: true,
+	  components: {
+	    "vue-select": __webpack_require__(7)
+	  },
+	  data: function() {
+	    return {
+	      options1: [
+	        "value1",
+	        "value2",
+	        "value3"
+	      ],
+	      options2: [{
+	        text: "name1",
+	        value: "value1"
+	      }, {
+	        text: "name2",
+	        value: "value2"
+	      }, {
+	        text: "name3",
+	        value: "value3"
+	      }],
+	      options3: [{
+	        label: "group1",
+	        options: [{
+	          text: "name1",
+	          value: "value1"
+	        }, {
+	          text: "name2",
+	          value: "value2"
+	        }, {
+	          text: "name3",
+	          value: "value3"
+	        }]
+	      }, {
+	        label: "group2",
+	        options: [{
+	          text: "name4",
+	          value: "value4"
+	        }, {
+	          text: "name5",
+	          value: "value5"
+	        }, {
+	          text: "name6",
+	          value: "value6"
+	        }]
+	      }]
+	    };
+	  }
+	};
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(8)
+	module.exports.template = __webpack_require__(9)
+
+
+/***/ },
+/* 8 */
 /***/ function(module, exports) {
 
 	/**
@@ -10343,6 +10366,9 @@
 	 *    the model bind to the control, which must be a two way binding variable.
 	 * @param searchable
 	 *    the optional flag indicates whether to show the search box.
+	 * @param language
+	 *    the optional code of language used by the select2 plugin. Default value
+	 *    is "en".
 	 * @param theme
 	 *    the optional name of the theme of the select2. Default value is "bootstrap".
 	 * @author Haixing Hu
@@ -10364,6 +10390,11 @@
 	      type: Boolean,
 	      required: false,
 	      default: false
+	    },
+	    language: {
+	      type: String,
+	      required: false,
+	      default: "en"
 	    },
 	    theme: {
 	      type: String,
@@ -10389,7 +10420,8 @@
 	  },
 	  ready: function() {
 	    var args = {
-	      theme: this.theme
+	      theme: this.theme,
+	      language: this.getLanguageCode(this.language)
 	    };
 	    if (! this.searchable) {
 	      args.minimumResultsForSearch = Infinity;  // hide the search box
@@ -10406,14 +10438,43 @@
 	        });
 	      }
 	    });
+	  },
+	  methods: {
+	    /**
+	     * Gets the language code from the possible language-country locale code.
+	     */
+	    getLanguageCode: function(lang) {
+	      if (lang === null || lang.length === 0) {
+	        return "en";
+	      }
+	      if (lang.length <= 2) {
+	        return lang;
+	      } else {
+	        switch (lang) {
+	          case "pt-BR":
+	          case "zh-CN":
+	          case "zh-TW":
+	            return lang;
+	          default:
+	            // reserve only the first two letters language code
+	            return lang.substr(0, 2);
+	        }
+	      }
+	    }
 	  }
 	};
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = "<select class=\"form-control\" v-model=\"model\" options=\"options\">\n  </select>"
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"form-horizontal\">\n    <div class=\"form-group\">\n      <label for=\"select1\" class=\"col-sm-3 control-label\">\n        A simple select:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select1\" name=\"select1\" options=\"{{options1}}\" model=\"{{@ result1}}\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result1\">{{result1}}</span>\n        </p>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"select2\" class=\"col-sm-3 control-label\">\n        A searchable select with names and localized in en-US:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select2\" name=\"select2\"\n                options=\"{{options2}}\" model=\"{{@ result2}}\"\n                searchable=\"true\" language=\"en-US\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result2\">{{result2}}</span>\n        </p>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"select3\" class=\"col-sm-3 control-label\">\n        A searchable select with groups and localized in zh-CN:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select3\" name=\"select3\"\n                    options=\"{{options3}}\" model=\"{{@ result3}}\"\n                    searchable=\"true\" language=\"zh-CN\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result3\">{{result3}}</span>\n        </p>\n      </div>\n    </div>\n  </div>"
 
 /***/ }
 /******/ ]);

@@ -1,4 +1,5 @@
 // Karma configuration
+var VueLoader = require('vue-loader');
 
 module.exports = function (config) {
   var settings = {
@@ -11,6 +12,8 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
+      "./lib/jquery/dist/jquery.min.js",
+      "./lib/select2/dist/js/select2.min.js",
       "./test/specs/**/*.js"
     ],
 
@@ -22,12 +25,16 @@ module.exports = function (config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       "./test/**/*.js": ['webpack', 'sourcemap'],
-      "./src/**/*.js": ['webpack', 'sourcemap']
+      "./demo/**/*.vue": ['webpack', 'sourcemap'],
+      "./src/**/*.vue": ['webpack', 'sourcemap']
     },
 
     webpack: {
       devtool: 'inline-source-map',
       module: {
+        loaders: [
+          { test: /\.vue$/, loader: VueLoader.withLoaders({html: "raw"}) } // use raw-loader to process HTML
+        ],
         postLoaders: [{
           test: /\.js$/,
           exclude: /test|node_modules/,

@@ -1,89 +1,192 @@
-# vue-titlecase
+# vue-select
 
-[![Build Status](https://circleci.com/gh/Haixing-Hu/vue-titlecase/tree/master.svg?style=shield)](https://circleci.com/gh/Haixing-Hu/vue-titlecase/tree/master)
-[![Coverage Status](https://coveralls.io/repos/Haixing-Hu/vue-titlecase/badge.svg?branch=master&service=github)](https://coveralls.io/github/Haixing-Hu/vue-titlecase?branch=master)
-[![bitHound Score](https://www.bithound.io/github/Haixing-Hu/vue-titlecase/badges/score.svg)](https://www.bithound.io/github/Haixing-Hu/vue-titlecase)
-[![Dependency Status](https://david-dm.org/Haixing-Hu/vue-titlecase.svg)](https://david-dm.org/Haixing-Hu/vue-titlecase)
-[![devDependency Status](https://david-dm.org/Haixing-Hu/vue-titlecase/dev-status.svg)](https://david-dm.org/Haixing-Hu/vue-titlecase#info=devDependencies)
+[![Build Status](https://circleci.com/gh/Haixing-Hu/vue-select/tree/master.svg?style=shield)](https://circleci.com/gh/Haixing-Hu/vue-select/tree/master)
+[![Coverage Status](https://coveralls.io/repos/Haixing-Hu/vue-select/badge.svg?branch=master&service=github)](https://coveralls.io/github/Haixing-Hu/vue-select?branch=master)
+[![bitHound Score](https://www.bithound.io/github/Haixing-Hu/vue-select/badges/score.svg)](https://www.bithound.io/github/Haixing-Hu/vue-select)
+[![Dependency Status](https://david-dm.org/Haixing-Hu/vue-select.svg)](https://david-dm.org/Haixing-Hu/vue-select)
+[![devDependency Status](https://david-dm.org/Haixing-Hu/vue-select/dev-status.svg)](https://david-dm.org/Haixing-Hu/vue-select#info=devDependencies)
 
-A Vue.js plugin provides a filter and a function to titlecase a string.
+A Vue.js component implementing the select control with the [jQuery select2 plugin](https://github.com/select2/select2).
+
+# Demo
+
+[Demo of vue-select]().
 
 # Requirements
-- [Vue.js](https://github.com/yyx990803/vue) ^`0.12.0`
 
-# Algorithm
-
-The algorithm is based on the gamma rule described as follows:
-
-[Glossary of Grammatical and Rhetorical Terms: title case (capitalization)](http://grammar.about.com/od/tz/g/Title-Case.htm)
+- [Vue.js](https://github.com/yyx990803/vue) `^0.12.0`
+- [Select2](https://github.com/select2/select2) `^4.0.0`
 
 # Instllation
 
 ## npm
 
 ```shell
-$ npm install vue-titlecase
+$ npm install vue-select
 ```
 
 ## bower
 
 ```shell
-$ bower install vue-titlecase
+$ bower install vue-select
 ```
 
 # Usage
 
+The HTML snippets are as follows:
+
+```html
+<div id="app">
+  <div class="form-horizontal">
+    <div class="form-group">
+      <label for="select1" class="col-sm-3 control-label">
+        A simple select:
+      </label>
+      <div class="col-sm-5">
+        <vue-select class="vue-select1" name="select1" options="{{options1}}" model="{{@ result1}}">
+        </vue-select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">
+          Selected Result: <span class="vue-result1">{{result1}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select2" class="col-sm-3 control-label">
+        A searchable select with names and localized in en-US:
+      </label>
+      <div class="col-sm-5">
+        <vue-select class="vue-select2" name="select2"
+                options="{{options2}}" model="{{@ result2}}"
+                searchable="true" language="en-US">
+        </vue-select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">
+          Selected Result: <span class="vue-result2">{{result2}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select3" class="col-sm-3 control-label">
+        A searchable select with groups and localized in zh-CN:
+      </label>
+      <div class="col-sm-5">
+        <vue-select class="vue-select3" name="select3"
+                    options="{{options3}}" model="{{@ result3}}"
+                    searchable="true" language="zh-CN">
+        </vue-select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">
+          Selected Result: <span class="vue-result3">{{result3}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+The Javascript snippets are as follows:
+
 ```javascript
-var Vue = require('vue')
-var Titlecase = require('vue-titlecase')
-
-// set plugin
-Vue.use(Titlecase)
-
-// create instance
-new Vue({
-  el: '#test-titlecase',
+var vm = new Vue({
+  el: "#app",
+  components: {
+    "vue-select": require("vue-select")
+  },
   data: {
-    msg: "hello world! my id is starfish. I LOVE WATCHing tv.",
+    options1: [
+      "value1",
+      "value2",
+      "value3"
+    ],
+    options2: [{
+      text: "name1",
+      value: "value1"
+    }, {
+      text: "name2",
+      value: "value2"
+    }, {
+      text: "name3",
+      value: "value3"
+    }],
+    options3: [{
+      label: "group1",
+      options: [{
+        text: "name1",
+        value: "value1"
+      }, {
+        text: "name2",
+        value: "value2"
+      }, {
+        text: "name3",
+        value: "value3"
+      }]
+    }, {
+      label: "group2",
+      options: [{
+        text: "name4",
+        value: "value4"
+      }, {
+        text: "name5",
+        value: "value5"
+      }, {
+        text: "name6",
+        value: "value6"
+      }]
+    }],
+    result1: "",
+    result2: "",
+    result3: ""
   }
-})
+});
 ```
 
-Template the following:
+# Component Properties
 
-```html
-<div id="test-titlecase" class="message">
-  <p>{{ msg | titlecase }}</p>
-  <p>{{ msg.toTitleCase() }}</p>
-</div>
-```
+## `options`
 
-Output the following:
+The array of options of the selection control. It could be
 
-```html
-<div id="test-titlecase" class="message">
-  <p>Hello World! My ID is Starfish. I Love Watching TV.</p>
-  <p>Hello World! My ID is Starfish. I Love Watching TV.</p>
-</div>
-```
+- an array of strings, e.g., `['opt1', 'opt2']`; or
+- an array of objects specifying the text and value of each option, e.g.,
+  `[{text: 'name1', value: 'val1'}, {text: 'name2', value: 'val2'}]`; or
+- an array of objects specifying the option group, e.g.
+  ```
+  [{
+    label: 'group1',
+    options: [{text: 'name1', value: 'val1'}, {text: 'name2', value: 'val2'}]
+  }, {
+    label: 'group2',
+    options: [{text: 'name3', value: 'val3'}, {text: 'name4', value: 'val4'}]
+  }]
+  ```
 
-# API
+## `model`
 
-## `String.prototype.toTitleCase()`
+The model bind to the control, which must be a two way binding variable.
 
-Converts a string instance to the titlecase form. Returns a new string.
+## `searchable`
 
-## `titlecase`
+The optional flag indicates whether to show the search box.
 
-This is a customized Vue filter used to converts the string representation of
-an object to the titlecase form.
+## `language`
+
+The optional code of language used by the select2 plugin. Default value is `'en'`.
+
+## `theme`
+
+The optional name of the theme of the select2. Default value is `'bootstrap'`.
 
 # Contributing
+
 - Fork it !
 - Create your top branch from `dev`: `git branch my-new-topic origin/dev`
 - Commit your changes: `git commit -am 'Add some topic'`
 - Push to the branch: `git push origin my-new-topic`
-- Submit a pull request to `dev` branch of `Haixing-Hu/vue-titlecase` repository !
+- Submit a pull request to `dev` branch of `Haixing-Hu/vue-select` repository !
 
 # Building and Testing
 
