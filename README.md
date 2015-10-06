@@ -182,6 +182,16 @@ The optional code of language used by the select2 plugin. Default value is `'en'
 
 The optional name of the theme of the select2. Default value is `'bootstrap'`.
 
+# API
+
+## `control`
+
+This property is a reference to the JQuery selection of the base select
+control. It could be used to call the APIs of select2. For example,
+`select.control.val(val)` will set the value of the select to the
+specified value, where `select` is the reference to the `vue-select`
+component.
+
 # Contributing
 
 - Fork it !
