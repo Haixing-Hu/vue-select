@@ -8,8 +8,6 @@
 
 A Vue.js component implementing the select control with the [jQuery select2 plugin](https://github.com/select2/select2).
 
-Check the project home page: http://haixing-hu.github.io/vue-select/
-
 # Demo
 
 The demo page is [HERE](http://haixing-hu.github.io/vue-select/demo.html).
