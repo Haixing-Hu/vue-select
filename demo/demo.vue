@@ -5,7 +5,9 @@
         A simple select:
       </label>
       <div class="col-sm-5">
-        <vue-select class="vue-select1" name="select1" options="{{options1}}" model="{{@ result1}}">
+        <vue-select class="vue-select1" name="select1"
+                    options="{{options1}}" model="{{@ result1}}"
+                    language="">
         </vue-select>
       </div>
       <div class="col-sm-4">
@@ -53,7 +55,7 @@
 module.exports = {
   inherit: true,
   components: {
-    "vue-select": require("../src/vue-select.vue")
+    "vue-select": require("../src/vue-select.js")
   },
   data: function() {
     return {

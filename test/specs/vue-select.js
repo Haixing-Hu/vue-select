@@ -4,7 +4,7 @@ var Demo = require("../../demo/demo.vue");
 
 var getVM = function(rootId, initResult1, initResult2, initResult3) {
   return Vue.extend({
-    template: "<div><demo></demo></div>",
+    template: "<div><demo v-ref='demo'></demo></div>",
     el: function() {
       var el = document.createElement("div");
       el.id = rootId;
@@ -256,6 +256,117 @@ describe("vue-select", function() {
           assert.equal(select3.val(), "value4");
           assert.equal(select3Text.text(), "name4");
           assert.equal(vm.result3, "value4");
+          done();
+        });
+      });
+    });
+  });
+
+  describe("change the options", function() {
+    var VM = getVM("change-options", "value1", "value2", "value6");
+    var vm = new VM();
+
+    it("select1", function(done) {
+      vm.$nextTick(function() {
+        var root = $("#change-options");
+        var select1 = root.find(".vue-select1");
+        var select1Text = select1.next(".select2").find(".select2-selection__rendered");
+        assert.equal(select1Text.text(), "value1");
+        assert.equal(vm.result1, "value1");
+        var demo = vm.$.demo;
+        demo.options1 = ["val1", "val2", "val3", "val4"];
+        vm.$nextTick(function() {
+          var options1 = select1.find("option");
+          assert.equal(options1.length, 4);
+          assert.equal(options1[0].text, "val1");
+          assert.equal(options1[0].value, "val1");
+          assert.equal(options1[1].text, "val2");
+          assert.equal(options1[1].value, "val2");
+          assert.equal(options1[2].text, "val3");
+          assert.equal(options1[2].value, "val3");
+          assert.equal(options1[3].text, "val4");
+          assert.equal(options1[3].value, "val4");
+          assert.equal(select1Text.text(), "");
+          assert.equal(vm.result1, null);
+          done();
+        });
+      });
+    });
+
+    it("select2", function(done) {
+      vm.$nextTick(function() {
+        var root = $("#change-options");
+        var select2 = root.find(".vue-select2");
+        var select2Text = select2.next(".select2").find(".select2-selection__rendered");
+        assert.equal(select2Text.text(), "name2");
+        assert.equal(vm.result2, "value2");
+        var demo = vm.$.demo;
+        demo.options2 = [{
+          text: "item1",
+          value: "value1"
+        }, {
+          text: "item2",
+          value: "value2"
+        }];
+        vm.$nextTick(function() {
+          var options2 = select2.find("option");
+          assert.equal(options2.length, 2);
+          assert.equal(options2[0].text, "item1");
+          assert.equal(options2[0].value, "value1");
+          assert.equal(options2[1].text, "item2");
+          assert.equal(options2[1].value, "value2");
+          assert.equal(select2Text.text(), "item2");
+          assert.equal(vm.result2, "value2");
+          done();
+        });
+      });
+    });
+
+    it("select3", function(done) {
+      vm.$nextTick(function() {
+        var root = $("#change-options");
+        var select3 = root.find(".vue-select3");
+        var select3Text = select3.next(".select2").find(".select2-selection__rendered");
+        assert.equal(select3Text.text(), "name6");
+        assert.equal(vm.result3, "value6");
+        var demo = vm.$.demo;
+        demo.options3.push({
+          label: "group3",
+          options: [{
+            text: "name7",
+            value: "value7"
+          }, {
+            text: "name8",
+            value: "value8"
+          }]
+        });
+        vm.$nextTick(function() {
+          var optgroups3 = select3.find("optgroup");
+          assert.equal(optgroups3.length, 3);
+          var options3_1 = $(optgroups3[0]).find("option");
+          assert.equal(options3_1.length, 3);
+          assert.equal(options3_1[0].text, "name1");
+          assert.equal(options3_1[0].value, "value1");
+          assert.equal(options3_1[1].text, "name2");
+          assert.equal(options3_1[1].value, "value2");
+          assert.equal(options3_1[2].text, "name3");
+          assert.equal(options3_1[2].value, "value3");
+          var options3_2 = $(optgroups3[1]).find("option");
+          assert.equal(options3_2.length, 3);
+          assert.equal(options3_2[0].text, "name4");
+          assert.equal(options3_2[0].value, "value4");
+          assert.equal(options3_2[1].text, "name5");
+          assert.equal(options3_2[1].value, "value5");
+          assert.equal(options3_2[2].text, "name6");
+          assert.equal(options3_2[2].value, "value6");
+          var options3_3 = $(optgroups3[2]).find("option");
+          assert.equal(options3_3.length, 2);
+          assert.equal(options3_3[0].text, "name7");
+          assert.equal(options3_3[0].value, "value7");
+          assert.equal(options3_3[1].text, "name8");
+          assert.equal(options3_3[1].value, "value8");
+          assert.equal(select3Text.text(), "name6");
+          assert.equal(vm.result3, "value6");
           done();
         });
       });

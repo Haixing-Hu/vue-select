@@ -26,7 +26,7 @@ module.exports = function (config) {
     preprocessors: {
       "./test/**/*.js": ['webpack', 'sourcemap'],
       "./demo/**/*.vue": ['webpack', 'sourcemap'],
-      "./src/**/*.vue": ['webpack', 'sourcemap']
+      "./src/**/*.js": ['webpack', 'sourcemap']
     },
 
     webpack: {
@@ -90,9 +90,9 @@ module.exports = function (config) {
       settings.reporters = ['coverage'];
       settings.coverageReporter = {
         reporters: [{
-          type: 'html', dir: "./coverage"
-        }, {
           type: 'text-summary', dir: "./coverage"
+        }, {
+          type: 'html', dir: "./coverage"
         }]
       };
       break;
@@ -100,7 +100,12 @@ module.exports = function (config) {
       settings.browsers = ['PhantomJS'];
       settings.reporters = ['coverage', 'coveralls'];
       settings.coverageReporter = {
-        reporters: [{ type: 'lcov', dir: "./coverage" }]
+        reporters: [{
+          type: 'text-summary', dir: "./coverage"
+        }, {
+          type: 'lcov',
+          dir: "./coverage"
+        }]
       };
       break;
     case 'sauce':

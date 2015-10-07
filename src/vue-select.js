@@ -1,8 +1,3 @@
-<template>
-  <select class="form-control" v-model="model" options="options">
-  </select>
-</template>
-<script>
 /**
  * A bootstrap style selection (combobox) control using the select2 plugin.
  *
@@ -28,6 +23,7 @@
 module.exports = {
   replace: true,
   inherit: false,
+  template: "<select class='form-control' v-model='model' options='options'></select>",
   props: {
     options: {
       type: Array,
@@ -114,4 +110,3 @@ module.exports = {
     }
   }
 };
-</script>
