@@ -88,23 +88,34 @@ module.exports = {
   },
   methods: {
     /**
-     * Gets the language code from the possible language-country locale code.
+     * Gets the language code from the "language-country" locale code.
+     *
+     * The function will strip the language code before the first "-" of a
+     * locale code. For example, pass "en-US" will returns "en". But for some
+     * special locales, the function reserves the locale code. For example,
+     * the "zh-CN" for the simplified Chinese and the "zh-TW" for the
+     * traditional Chinese.
+     *
+     * @param locale
+     *    A locale code.
+     * @return
+     *    the language code of the locale.
      */
-    getLanguageCode: function(lang) {
-      if (lang === null || lang.length === 0) {
+    getLanguageCode: function(locale) {
+      if (locale === null || locale.length === 0) {
         return "en";
       }
-      if (lang.length <= 2) {
-        return lang;
+      if (locale.length <= 2) {
+        return locale;
       } else {
-        switch (lang) {
+        switch (locale) {
           case "pt-BR":
           case "zh-CN":
           case "zh-TW":
-            return lang;
+            return locale;
           default:
             // reserve only the first two letters language code
-            return lang.substr(0, 2);
+            return locale.substr(0, 2);
         }
       }
     }
