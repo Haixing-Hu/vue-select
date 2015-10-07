@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Vue-select : A Vue.js component implementing the select control with the jQuery select2 plugin.">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Vue-select</title>
+    <meta charset="UTF-8">
+    <title>Vue-select by Haixing-Hu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Vue-select</h1>
+      <h2 class="project-tagline">A Vue.js component implementing the select control with the jQuery select2 plugin.</h2>
+      <a href="https://github.com/Haixing-Hu/vue-select" class="btn">View on GitHub</a>
+      <a href="https://github.com/Haixing-Hu/vue-select/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Haixing-Hu/vue-select/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/Haixing-Hu/vue-select">View on GitHub</a>
-
-          <h1 id="project_title">Vue-select</h1>
-          <h2 id="project_tagline">A Vue.js component implementing the select control with the jQuery select2 plugin.</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/Haixing-Hu/vue-select/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/Haixing-Hu/vue-select/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="vue-select" class="anchor" href="#vue-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue-select</h1>
 
 <p><a href="https://circleci.com/gh/Haixing-Hu/vue-select/tree/master"><img src="https://circleci.com/gh/Haixing-Hu/vue-select/tree/master.svg?style=shield" alt="Build Status"></a>
@@ -226,13 +214,28 @@
 <a id="language" class="anchor" href="#language" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>language</code>
 </h2>
 
-<p>The optional code of language used by the select2 plugin. Default value is <code>'en'</code>.</p>
+<p>The optional code of language used by the select2 plugin. Default value is <code>'en'</code>.
+For the sake of convenience, you can pass a "language-country" locale code to
+this property. For example, "en-US". The component will automatically strip the
+two letter language code from the locale code. For some special languages, you
+must pass the "language-country" locale code. For example, "zh-CN" for the
+simplified Chinese and "zh-TW" for the traditional Chinese.</p>
+
+<p>The supported languages are exactly the same as the supported languages of the
+<code>select2</code> plugin. In order to use the supported language, you must also include
+the corresponding "i18n" js file of the "select2" plugin in your HTML file.</p>
 
 <h2>
 <a id="theme" class="anchor" href="#theme" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>theme</code>
 </h2>
 
 <p>The optional name of the theme of the select2. Default value is <code>'bootstrap'</code>.</p>
+
+<p>Note that in order to use the bootstrap theme, you must include the CSS file
+from the <a href="https://github.com/select2/select2-bootstrap-theme/">select2-bootstrap-theme</a> project.
+And it's very important that the above CSS file must be included AFTER the
+CSS file of the bootstrap. Check our <a href="http://haixing-hu.github.io/vue-select/demo.html">demo page</a>
+for details.</p>
 
 <h1>
 <a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h1>
@@ -305,18 +308,15 @@ command:</p>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
 
 <p><a href="http://opensource.org/licenses/MIT">The MIT License</a></p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Vue-select maintained by <a href="https://github.com/Haixing-Hu">Haixing-Hu</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Haixing-Hu/vue-select">Vue-select</a> is maintained by <a href="https://github.com/Haixing-Hu">Haixing-Hu</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
