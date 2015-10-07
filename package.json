@@ -1,7 +1,7 @@
 {
   "name": "vue-select",
   "description": "A Vue.js component implementing the select control with the jQuery select2 plugin.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Haixing Hu",
     "email": "starfish.hu@gmail.com"
@@ -16,7 +16,7 @@
     "url": "https://github.com/Haixing-Hu/vue-select/issues"
   },
   "main": [
-    "src/vue-select.vue"
+    "src/vue-select.js"
   ],
   "configs": {
     "directories": {
