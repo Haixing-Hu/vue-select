@@ -179,10 +179,25 @@ The optional flag indicates whether to show the search box.
 ## `language`
 
 The optional code of language used by the select2 plugin. Default value is `'en'`.
+For the sake of convenience, you can pass a "language-country" locale code to
+this property. For example, "en-US". The component will automatically strip the
+two letter language code from the locale code. For some special languages, you
+must pass the "language-country" locale code. For example, "zh-CN" for the
+simplified Chinese and "zh-TW" for the traditional Chinese.
+
+The supported languages are exactly the same as the supported languages of the
+`select2` plugin. In order to use the supported language, you must also include
+the corresponding "i18n" js file of the "select2" plugin in your HTML file.
 
 ## `theme`
 
 The optional name of the theme of the select2. Default value is `'bootstrap'`.
+
+Note that in order to use the bootstrap theme, you must include the CSS file
+from the [select2-bootstrap-theme](https://github.com/select2/select2-bootstrap-theme/) project.
+And it's very important that the above CSS file must be included AFTER the
+CSS file of the bootstrap. Check our [demo page](http://haixing-hu.github.io/vue-select/demo.html)
+for details.
 
 # API
 
