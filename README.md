@@ -170,6 +170,11 @@ The array of options of the selection control. It could be
 
 The model bind to the control, which must be a two way binding variable.
 
+Note that the value of model could be set to `null`, and in that case the
+selection will be set to nothing. Also, if the selection is set to nothing
+(that is, the user delete the text in the input box of the selector), the
+value of the model will be set to `null` instead of an empty string.
+
 ## `searchable`
 
 The optional flag indicates whether to show the search box.
@@ -194,7 +199,7 @@ The optional name of the theme of the select2. Default value is `'bootstrap'`.
 Note that in order to use the bootstrap theme, you must include the CSS file
 from the [select2-bootstrap-theme](https://github.com/select2/select2-bootstrap-theme/) project.
 And it's very important that the above CSS file must be included AFTER the
-CSS file of the bootstrap. 
+CSS file of the bootstrap.
 
 The following is the correct order for including CSS files:
 
