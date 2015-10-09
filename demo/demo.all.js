@@ -1,5 +1,5 @@
 /*!
- * vue-select v0.1.0
+ * vue-select v0.1.4
  * (c) 2015 Haixing Hu
  * Released under the MIT License.
  */
@@ -49,11 +49,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Vue = __webpack_require__(3);
+	var Vue = __webpack_require__(2);
 	
 	var vm = new Vue({
 	  components: {
-	    "demo": __webpack_require__(5)
+	    "demo": __webpack_require__(4)
 	  },
 	  data: {
 	    result1: null,
@@ -67,14 +67,13 @@
 
 /***/ },
 /* 1 */,
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(4);
+	module.exports = __webpack_require__(3);
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -10277,21 +10276,21 @@
 	;
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(6)
-	module.exports.template = __webpack_require__(10)
+	module.exports = __webpack_require__(5)
+	module.exports.template = __webpack_require__(7)
 
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
 	  inherit: true,
 	  components: {
-	    "vue-select": __webpack_require__(7)
+	    "vue-select": __webpack_require__(6)
 	  },
 	  data: function() {
 	    return {
@@ -10340,15 +10339,7 @@
 	};
 
 /***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(8)
-	module.exports.template = __webpack_require__(9)
-
-
-/***/ },
-/* 8 */
+/* 6 */
 /***/ function(module, exports) {
 
 	/**
@@ -10376,6 +10367,7 @@
 	module.exports = {
 	  replace: true,
 	  inherit: false,
+	  template: "<select class='form-control' v-model='model' options='options' style='width: 100%'></select>",
 	  props: {
 	    options: {
 	      type: Array,
@@ -10440,40 +10432,46 @@
 	  },
 	  methods: {
 	    /**
-	     * Gets the language code from the possible language-country locale code.
+	     * Gets the language code from the "language-country" locale code.
+	     *
+	     * The function will strip the language code before the first "-" of a
+	     * locale code. For example, pass "en-US" will returns "en". But for some
+	     * special locales, the function reserves the locale code. For example,
+	     * the "zh-CN" for the simplified Chinese and the "zh-TW" for the
+	     * traditional Chinese.
+	     *
+	     * @param locale
+	     *    A locale code.
+	     * @return
+	     *    the language code of the locale.
 	     */
-	    getLanguageCode: function(lang) {
-	      if (lang === null || lang.length === 0) {
+	    getLanguageCode: function(locale) {
+	      if (locale === null || locale.length === 0) {
 	        return "en";
 	      }
-	      if (lang.length <= 2) {
-	        return lang;
+	      if (locale.length <= 2) {
+	        return locale;
 	      } else {
-	        switch (lang) {
+	        switch (locale) {
 	          case "pt-BR":
 	          case "zh-CN":
 	          case "zh-TW":
-	            return lang;
+	            return locale;
 	          default:
 	            // reserve only the first two letters language code
-	            return lang.substr(0, 2);
+	            return locale.substr(0, 2);
 	        }
 	      }
 	    }
 	  }
 	};
 
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	module.exports = "<select class=\"form-control\" v-model=\"model\" options=\"options\">\n  </select>"
 
 /***/ },
-/* 10 */
+/* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"form-horizontal\">\n    <div class=\"form-group\">\n      <label for=\"select1\" class=\"col-sm-3 control-label\">\n        A simple select:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select1\" name=\"select1\" options=\"{{options1}}\" model=\"{{@ result1}}\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result1\">{{result1}}</span>\n        </p>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"select2\" class=\"col-sm-3 control-label\">\n        A searchable select with names and localized in en-US:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select2\" name=\"select2\"\n                options=\"{{options2}}\" model=\"{{@ result2}}\"\n                searchable=\"true\" language=\"en-US\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result2\">{{result2}}</span>\n        </p>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"select3\" class=\"col-sm-3 control-label\">\n        A searchable select with groups and localized in zh-CN:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select3\" name=\"select3\"\n                    options=\"{{options3}}\" model=\"{{@ result3}}\"\n                    searchable=\"true\" language=\"zh-CN\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result3\">{{result3}}</span>\n        </p>\n      </div>\n    </div>\n  </div>"
+	module.exports = "<div class=\"form-horizontal\">\n    <div class=\"form-group\">\n      <label for=\"select1\" class=\"col-sm-3 control-label\">\n        A simple select:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select1\" name=\"select1\"\n                    options=\"{{options1}}\" model=\"{{@ result1}}\"\n                    language=\"\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result1\">{{result1}}</span>\n        </p>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"select2\" class=\"col-sm-3 control-label\">\n        A searchable select with names and localized in en-US:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select2\" name=\"select2\"\n                options=\"{{options2}}\" model=\"{{@ result2}}\"\n                searchable=\"true\" language=\"en-US\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result2\">{{result2}}</span>\n        </p>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"select3\" class=\"col-sm-3 control-label\">\n        A searchable select with groups and localized in zh-CN:\n      </label>\n      <div class=\"col-sm-5\">\n        <vue-select class=\"vue-select3\" name=\"select3\"\n                    options=\"{{options3}}\" model=\"{{@ result3}}\"\n                    searchable=\"true\" language=\"zh-CN\">\n        </vue-select>\n      </div>\n      <div class=\"col-sm-4\">\n        <p class=\"form-control-static\">\n          Selected Result: <span class=\"vue-result3\">{{result3}}</span>\n        </p>\n      </div>\n    </div>\n  </div>"
 
 /***/ }
 /******/ ]);
