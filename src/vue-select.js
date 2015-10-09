@@ -23,7 +23,7 @@
 module.exports = {
   replace: true,
   inherit: false,
-  template: "<select class='form-control' v-model='model' options='options'></select>",
+  template: "<select class='form-control' v-model='model' options='options' style='width: 100%'></select>",
   props: {
     options: {
       type: Array,
