@@ -182,7 +182,7 @@ The optional flag indicates whether to show the search box.
 ## `language`
 
 The optional code of language used by the
-[select2](https://github.com/select2/select2) plugin. Default value is `"en"`.
+[select2](https://github.com/select2/select2) plugin.
 
 The supported languages are exactly the same as the supported languages of the
 [select2](https://github.com/select2/select2) plugin. In order to use the
@@ -196,6 +196,11 @@ the [select2](https://github.com/select2/select2) plugin. Since some languages
 have different variants in different country or region, e.g., `"zh-CN"` for the
 simplified Chinese and `"zh-TW"` for the traditional Chinese, it's recommended
 to use the locale code in the form of `"[language]-[country]"`.
+
+If this property is not set, and the [vue-i18n](https://github.com/Haixing-Hu/vue-i18n)
+plugin is used, the component will use the language code `$language` provided
+by the [vue-i18n](https://github.com/Haixing-Hu/vue-i18n) plugin; otherwise, the
+component will use the default value `"en-US"`.
 
 ## `theme`
 

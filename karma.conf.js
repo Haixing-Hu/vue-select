@@ -14,7 +14,13 @@ module.exports = function (config) {
     files: [
       "./lib/jquery/dist/jquery.min.js",
       "./lib/select2/dist/js/select2.min.js",
-      "./test/specs/**/*.js"
+      "./test/specs/**/*.js",
+      {
+        pattern: "./test/specs/i18n/*.json",
+        watched: false,
+        included: false,
+        served: true
+      }
     ],
 
     // list of files to exclude

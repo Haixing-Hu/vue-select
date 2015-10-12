@@ -1,4 +1,9 @@
 /**
+ * The default language used by this component.
+ */
+var DEFAULT_LANGUAGE = "en-US";
+
+/**
  * A bootstrap style selection (combobox) control using the select2 plugin.
  *
  * @param options
@@ -14,8 +19,11 @@
  * @param searchable
  *    the optional flag indicates whether to show the search box.
  * @param language
- *    the optional code of language used by the select2 plugin. Default value
- *    is "en".
+ *    the optional code of language used by the select2 plugin. If it is not set,
+ *    and the [vue-i18n](https://github.com/Haixing-Hu/vue-i18n) plugin is used,
+ *    the component will use the language code `$language` provided by the
+ *    [vue-i18n](https://github.com/Haixing-Hu/vue-i18n) plugin; otherwise, the
+ *    component will use the default value "en-US".
  * @param theme
  *    the optional name of the theme of the select2. Default value is "bootstrap".
  * @author Haixing Hu
@@ -41,7 +49,7 @@ module.exports = {
     language: {
       type: String,
       required: false,
-      default: "en"
+      default: ""
     },
     theme: {
       type: String,
@@ -66,9 +74,17 @@ module.exports = {
     }
   },
   ready: function() {
+    var language = this.language;
+    if (language === null || language === "") {
+      if (this.$language) {
+        language = this.$language;
+      } else {
+        language = DEFAULT_LANGUAGE;
+      }
+    }
     var args = {
       theme: this.theme,
-      language: this.getLanguageCode(this.language)
+      language: this.getLanguageCode(language)
     };
     if (! this.searchable) {
       args.minimumResultsForSearch = Infinity;  // hide the search box
