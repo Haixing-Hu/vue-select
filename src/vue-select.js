@@ -17,7 +17,11 @@ var DEFAULT_LANGUAGE = "en-US";
  * @param model
  *    the model bind to the control, which must be a two way binding variable.
  * @param searchable
- *    the optional flag indicates whether to show the search box.
+ *    the optional flag indicates whether to show the search box. Default value
+ *    is false.
+ * @param matchValue
+ *    the optional flag indicates whether the searching should match both the
+ *    texts and values of options. Default value is true.
  * @param language
  *    the optional code of language used by the select2 plugin. If it is not set,
  *    and the [vue-i18n](https://github.com/Haixing-Hu/vue-i18n) plugin is used,
@@ -45,6 +49,11 @@ module.exports = {
       type: Boolean,
       required: false,
       default: false
+    },
+    matchValue: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     language: {
       type: String,
@@ -88,6 +97,10 @@ module.exports = {
     };
     if (! this.searchable) {
       args.minimumResultsForSearch = Infinity;  // hide the search box
+    } else {
+      if (this.matchValue) {
+        args.matcher = require("./value-text-matcher.js");
+      }
     }
     this.control = $(this.$el);
     this.control.select2(args);
