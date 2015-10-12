@@ -24,7 +24,7 @@ The demo page is [HERE](http://haixing-hu.github.io/vue-select/demo.html).
 ## npm
 
 ```shell
-$ npm install vue-select
+$ npm install vue-select2
 ```
 
 ## bower
