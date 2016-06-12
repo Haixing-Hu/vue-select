@@ -44,7 +44,7 @@ gulp.task("webpack", function(done) {
       "NODE_ENV": JSON.stringify("production")
     }
   }), new webpack.optimize.UglifyJsPlugin());
-  webpackProdConfig.output.filename = "[name].all.min.js";
+  webpackProdConfig.output.filename = "[name].min.js";
   // run webpack
   webpack(webpackProdConfig, function(err, stats) {
     if(err) throw new gutil.PluginError("webpack:build", err);
