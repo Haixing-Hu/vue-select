@@ -1,5 +1,5 @@
 /*!
- * vue-select2 v0.2.0
+ * vue-select2 v0.2.1
  * (c) 2016 Haixing Hu
  * Released under the MIT License.
  */
