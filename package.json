@@ -1,7 +1,7 @@
 {
   "name": "vue-select2",
   "description": "A Vue.js component implementing the select control with the jQuery select2 plugin.",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": {
     "name": "Haixing Hu",
     "email": "starfish.hu@gmail.com"
@@ -63,7 +63,7 @@
     "vue-loader": "^8.5.2",
     "vue-html-loader": "^1.2.2",
     "vue-style-loader": "^1.0.0",
-    "vue-hot-reload-api": "^2.0.0",
+    "vue-hot-reload-api": "^1.2.0",
     "raw-loader": "^0.5.1",
     "html-loader": "^0.4.3",
     "css-loader": "^0.23.1",

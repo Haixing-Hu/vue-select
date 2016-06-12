@@ -1,5 +1,5 @@
 /*!
- * vue-select2 v0.2.4
+ * vue-select2 v0.2.6
  * (c) 2016 Haixing Hu
  * Released under the MIT License.
  */
@@ -81,6 +81,8 @@
 	 *    component will use the default value "en-US".
 	 * @param theme
 	 *    the optional name of the theme of the select2. Default value is "bootstrap".
+	 * @param name
+	 *    the optional name of the selection control.
 	 * @author Haixing Hu
 	 */
 	module.exports = {
