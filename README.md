@@ -223,6 +223,10 @@ The following is the correct order for including CSS files:
 
 Check the [demo page](http://haixing-hu.github.io/vue-select/demo.html) for details.
 
+## `name`
+
+The optional name of the selection control.
+
 # API
 
 ## `control`
