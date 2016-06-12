@@ -17,7 +17,7 @@ The demo page is [HERE](http://haixing-hu.github.io/vue-select/demo.html).
 # Requirements
 
 - [Vue.js](https://github.com/yyx990803/vue) `^1.0.24`
-- [JQuery](https://github.com/jquery/jquery) `^3.0.0`
+- [JQuery](https://github.com/jquery/jquery) `^2.2.4`
 - [Select2](https://github.com/select2/select2) `^4.0.3`
 
 # Instllation
