@@ -35,7 +35,7 @@ var DEFAULT_LANGUAGE = "en-US";
 module.exports = {
   replace: true,
   inherit: false,
-  template: "<select class='form-control' v-model='model' style='width: 100%'>"
+  template: "<select class='form-control' v-model='model' :name='name' style='width: 100%'>"
           +   "<option v-if='optionsType === \"values\"' v-for='val in options' :value='val'>{{val}}</option>"
           +   "<option v-if='optionsType === \"options\"' v-for='opt in options' :value='opt.value'>{{opt.text}}</option>"
           +   "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' :label='group.label'>"
@@ -60,6 +60,11 @@ module.exports = {
       type: Boolean,
       required: false,
       default: true
+    },
+    name: {
+      type: String,
+      required: false,
+      default: ""
     },
     language: {
       type: String,

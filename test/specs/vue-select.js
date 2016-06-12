@@ -37,6 +37,7 @@ describe("vue-select", function() {
         var root = $("#static-render");
         var select1 = root.find(".vue-select1");
         assert.equal(select1.prop("tagName"), "SELECT");
+        assert.equal(select1.prop("name"), "select1");
         var options1 = select1.find("option");
         assert.equal(options1.length, 3);
         assert.equal(options1[0].text, "value1");
@@ -70,6 +71,7 @@ describe("vue-select", function() {
         //  check select2
         var select2 = root.find(".vue-select2");
         assert.equal(select2.prop("tagName"), "SELECT");
+        assert.equal(select2.prop("name"), "select2");
         var options2 = select2.find("option");
         assert.equal(options2.length, 3);
         assert.equal(options2[0].text, "name1");
@@ -103,6 +105,7 @@ describe("vue-select", function() {
         //  check select3
         var select3 = root.find(".vue-select3");
         assert.equal(select3.prop("tagName"), "SELECT");
+        assert.equal(select3.prop("name"), "select3");
         var optgroups3 = select3.find("optgroup");
         assert.equal(optgroups3.length, 2);
         var options3_1 = $(optgroups3[0]).find("option");
