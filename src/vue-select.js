@@ -23,7 +23,19 @@
 module.exports = {
   replace: true,
   inherit: false,
-  template: "<select class='form-control' v-model='model' options='options' style='width: 100%'></select>",
+  template: "<select class='form-control' v-model='model' style='width: 100%'>"
+          +   "<option v-if='optionsType === \"values\"' v-for='val in options' v-bind:value='val'>"
+          +     "{{val}}"
+          +   "</option>"
+          +   "<option v-if='optionsType === \"options\"' v-for='opt in options' v-bind:value='opt.value'>"
+          +     "{{opt.text}}"
+          +   "</option>"
+          +   "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' v-bind:label='group.label'>"
+          +     "<option v-for='opt in group.options' v-bind:value='opt.value'>"
+          +       "{{opt.text}}"
+          +     "</option>"
+          +   "</optgroup>"
+          + "</select>",
   props: {
     options: {
       type: Array,
@@ -49,15 +61,29 @@ module.exports = {
       default: "bootstrap"
     }
   },
+  data: function() {
+    return {
+      optionsType: "unknown"
+    }
+  },
   beforeCompile: function() {
     this.isChanging = false;
     this.control = null;
+    this.optionsType = this.getOptionsType();
   },
   watch: {
     "options": function(val, oldVal) {
-      this.control.trigger('change');
+      //console.debug("options.change");
+      this.optionsType = this.getOptionsType();
+      var found = this.inOptions(this.model);
+      var newValue = (found ? this.model : null);
+      this.control.removeData("data");  // remove the cached options data
+      // note that setting the model will automatically changed in the "change"
+      // event of the select2 control
+      this.control.val(newValue).trigger("change");
     },
     "model": function(val, oldVal) {
+      //console.debug("model.change");
       if (! this.isChanging) {
         this.isChanging = true;
         this.control.val(val).trigger("change");
@@ -77,6 +103,7 @@ module.exports = {
     this.control.select2(args);
     var me = this;
     this.control.on("change", function(e) {
+      console.debug("control.change");
       if (! me.isChanging) {
         me.isChanging = true;
         me.model = me.control.val();
@@ -87,6 +114,82 @@ module.exports = {
     });
   },
   methods: {
+
+    /**
+     * Gets the type of the `options` property of this component.
+     *
+     * The `options` property of this component may have the following types:
+     * - "values": the `options` is an array of strings, e.g., `[value1, value2, value3]`;
+     * - "options": the `options` is an array of options, e.g., `[{text: 'name1', value: 'val1'}, {text: 'name2', value: 'val2'}]`;
+     * - "groups": the `options` is an array of option groups, e.g.,
+     *   `[{label: 'group1', options: [{text: 'name1', value: 'val1'}, {text: 'name2', value: 'val2'}]},
+     *     {label: 'group2', options: [{text: 'name3', value: 'val3'}, {text: 'name4', value: 'val4'}]}]`;
+     *
+     * @param options
+     *    the new options.
+     * @return
+     *    the string representing the type of the `options` property of this
+     *    component.
+     */
+    getOptionsType: function() {
+      if (this.options.length === 0) {
+        return "values";
+      }
+      var el = this.options[0];
+      if (typeof el == "string" || el instanceof String) {
+        return "values";
+      } else if (typeof el.text !== "undefined") {
+        return "options";
+      } else if (typeof el.label !== "undefined") {
+        return "groups";
+      } else {
+        return "unknown";
+      }
+    },
+
+    /**
+     * Tests whether a specified value exists in the options.
+     *
+     * @param value
+     *    the value to test.
+     * @return
+     *    true if the specified value exists in the options; false otherwise.
+     */
+    inOptions: function(value) {
+      var type = this.getOptionsType();
+      var list = this.options;
+      var i, j;
+      switch (type) {
+      case "values":
+        for (i = 0; i < list.length; ++i) {
+          if (value === list[i]) {
+            return true;
+          }
+        }
+        break;
+      case "options":
+        for (i = 0; i < list.length; ++i) {
+          if (value === list[i].value) {
+            return true;
+          }
+        }
+        break;
+      case "groups":
+        for (i = 0; i < list.length; ++i) {
+          var options = list[i].options;
+          for (j = 0; j < options.length; ++j) {
+            if (value === options[j].value) {
+              return true;
+            }
+          }
+        }
+        break;
+      default:
+        break;
+      }
+      return false;
+    },
+
     /**
      * Gets the language code from the "language-country" locale code.
      *
