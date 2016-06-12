@@ -36,16 +36,10 @@ module.exports = {
   replace: true,
   inherit: false,
   template: "<select class='form-control' v-model='model' style='width: 100%'>"
-          +   "<option v-if='optionsType === \"values\"' v-for='val in options' v-bind:value='val'>"
-          +     "{{val}}"
-          +   "</option>"
-          +   "<option v-if='optionsType === \"options\"' v-for='opt in options' v-bind:value='opt.value'>"
-          +     "{{opt.text}}"
-          +   "</option>"
-          +   "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' v-bind:label='group.label'>"
-          +     "<option v-for='opt in group.options' v-bind:value='opt.value'>"
-          +       "{{opt.text}}"
-          +     "</option>"
+          +   "<option v-if='optionsType === \"values\"' v-for='val in options' :value='val'>{{val}}</option>"
+          +   "<option v-if='optionsType === \"options\"' v-for='opt in options' :value='opt.value'>{{opt.text}}</option>"
+          +   "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' :label='group.label'>"
+          +     "<option v-for='opt in group.options' :value='opt.value'>{{opt.text}}</option>"
           +   "</optgroup>"
           + "</select>",
   props: {
@@ -132,7 +126,7 @@ module.exports = {
     this.control.select2(args);
     var me = this;
     this.control.on("change", function(e) {
-      console.debug("control.change");
+      //console.debug("control.change");
       if (! me.isChanging) {
         me.isChanging = true;
         me.model = me.control.val();

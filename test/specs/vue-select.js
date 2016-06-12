@@ -6,7 +6,7 @@ var VueSelect = require("../../src/vue-select.js");
 
 var getVM = function(rootId, initResult1, initResult2, initResult3) {
   return Vue.extend({
-    template: "<div><demo v-ref='demo'></demo></div>",
+    template: "<div><demo v-ref:demo :result1.sync='result1' :result2.sync='result2'  :result3.sync='result3'></demo></div>",
     el: function() {
       var el = document.createElement("div");
       el.id = rootId;
@@ -275,7 +275,7 @@ describe("vue-select", function() {
         var select1Text = select1.next(".select2").find(".select2-selection__rendered");
         assert.equal(select1Text.text(), "value1");
         assert.equal(vm.result1, "value1");
-        var demo = vm.$.demo;
+        var demo = vm.$refs.demo;
         demo.options1 = ["val1", "val2", "val3", "val4"];
         vm.$nextTick(function() {
           var options1 = select1.find("option");
@@ -302,7 +302,7 @@ describe("vue-select", function() {
         var select2Text = select2.next(".select2").find(".select2-selection__rendered");
         assert.equal(select2Text.text(), "name2");
         assert.equal(vm.result2, "value2");
-        var demo = vm.$.demo;
+        var demo = vm.$refs.demo;
         demo.options2 = [{
           text: "item1",
           value: "value1"
@@ -331,7 +331,7 @@ describe("vue-select", function() {
         var select3Text = select3.next(".select2").find(".select2-selection__rendered");
         assert.equal(select3Text.text(), "name6");
         assert.equal(vm.result3, "value6");
-        var demo = vm.$.demo;
+        var demo = vm.$refs.demo;
         demo.options3.push({
           label: "group3",
           options: [{
@@ -408,7 +408,7 @@ describe("vue-select", function() {
   //   it.only("test language", function(done) {
   //     var vm = new VM();
   //     vm.$nextTick(function() {
-  //       var select = vm.$.select.control;
+  //       var select = vm.$refs.select.control;
   //       assert.equal(select.options.get("language"), "zh-CN");
   //       done();
   //     });

@@ -6,7 +6,7 @@
       </label>
       <div class="col-sm-5">
         <vue-select class="vue-select1" name="select1"
-                    options="{{options1}}" model="{{@ result1}}"
+                    :options="options1" :model.sync="result1"
                     language="">
         </vue-select>
       </div>
@@ -22,8 +22,8 @@
       </label>
       <div class="col-sm-5">
         <vue-select class="vue-select2" name="select2"
-                options="{{options2}}" model="{{@ result2}}"
-                searchable="true" language="en-US">
+                :options="options2" :model.sync="result2"
+                :searchable="true" language="en-US">
         </vue-select>
       </div>
       <div class="col-sm-4">
@@ -38,8 +38,8 @@
       </label>
       <div class="col-sm-5">
         <vue-select class="vue-select3" name="select3"
-                    options="{{options3}}" model="{{@ result3}}"
-                    searchable="true" language="zh-CN">
+                    :options="options3" :model.sync="result3"
+                    :searchable="true" language="zh-CN">
         </vue-select>
       </div>
       <div class="col-sm-4">
@@ -53,7 +53,6 @@
 
 <script>
 module.exports = {
-  inherit: true,
   components: {
     "vue-select": require("../src/vue-select.js")
   },
@@ -100,6 +99,20 @@ module.exports = {
         }]
       }]
     };
+  },
+  props: {
+    result1: {
+      required: true,
+      twoWay: true
+    },
+    result2: {
+      required: true,
+      twoWay: true
+    },
+    result3: {
+      required: true,
+      twoWay: true
+    }
   }
 };
 </script>

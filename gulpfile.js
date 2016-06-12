@@ -3,7 +3,7 @@ var gulp = require("gulp");
 var del = require("del");
 var gutil = require("gulp-util");
 var webpack = require("webpack");
-var webpackConfig = require("./demo/webpack.config.js");
+var webpackConfig = require("./webpack.config.js");
 var runSequence = require("run-sequence");
 var Server = require('karma').Server;
 var pkg = require("./package.json");
@@ -98,7 +98,7 @@ gulp.task("build", function (done) {
     "clean",
     "test:coveralls",
     "webpack-dev",
-    // "webpack",
+    "webpack",
   done);
 });
 

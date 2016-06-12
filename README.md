@@ -16,8 +16,9 @@ The demo page is [HERE](http://haixing-hu.github.io/vue-select/demo.html).
 
 # Requirements
 
-- [Vue.js](https://github.com/yyx990803/vue) `^0.12.0`
-- [Select2](https://github.com/select2/select2) `^4.0.0`
+- [Vue.js](https://github.com/yyx990803/vue) `^1.0.24`
+- [JQuery](https://github.com/jquery/jquery) `^3.0.0`
+- [Select2](https://github.com/select2/select2) `^4.0.3`
 
 # Instllation
 
@@ -45,7 +46,7 @@ The HTML snippets are as follows:
         A simple select:
       </label>
       <div class="col-sm-5">
-        <vue-select class="vue-select1" name="select1" options="{{options1}}" model="{{@ result1}}">
+        <vue-select class="vue-select1" name="select1" :options="options1" :model.sync="result1">
         </vue-select>
       </div>
       <div class="col-sm-4">
@@ -60,8 +61,8 @@ The HTML snippets are as follows:
       </label>
       <div class="col-sm-5">
         <vue-select class="vue-select2" name="select2"
-                options="{{options2}}" model="{{@ result2}}"
-                searchable="true" language="en-US">
+                :options="options2" :model.sync="result2"
+                :searchable="true" language="en-US">
         </vue-select>
       </div>
       <div class="col-sm-4">
@@ -76,8 +77,8 @@ The HTML snippets are as follows:
       </label>
       <div class="col-sm-5">
         <vue-select class="vue-select3" name="select3"
-                    options="{{options3}}" model="{{@ result3}}"
-                    searchable="true" language="zh-CN">
+                    :options="options3" :model.sync="result3"
+                    :searchable="true" language="zh-CN">
         </vue-select>
       </div>
       <div class="col-sm-4">

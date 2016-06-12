@@ -12,9 +12,12 @@
 <body>
   <h1 class="text-center">Demo of vue-select</h1>
   <div class="container" id="app">
-    <demo></demo>
+    <demo :result1.sync='result1'
+          :result2.sync='result2'
+          :result3.sync='result3'>
+    </demo>
   </div>
-  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
   <script type="text/javascript" src="https://cdn.bootcss.com/select2/4.0.0/js/select2.js"></script>
   <script type="text/javascript" src="https://cdn.bootcss.com/select2/4.0.0/js/i18n/en.js"></script>
   <script type="text/javascript" src="https://cdn.bootcss.com/select2/4.0.0/js/i18n/zh-CN.js"></script>
