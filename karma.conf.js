@@ -14,7 +14,13 @@ module.exports = function (config) {
     files: [
       "./lib/jquery/dist/jquery.min.js",
       "./lib/select2/dist/js/select2.min.js",
-      "./test/specs/**/*.js"
+      "./test/specs/**/*.js",
+      {
+        pattern: "./test/specs/i18n/*.json",
+        watched: false,
+        included: false,
+        served: true
+      }
     ],
 
     // list of files to exclude
@@ -37,7 +43,7 @@ module.exports = function (config) {
         ],
         postLoaders: [{
           test: /\.js$/,
-          exclude: /test|node_modules/,
+          exclude: /test|node_modules|lib|value-text-matcher.js/,
           loader: 'istanbul-instrumenter'
         }]
       }

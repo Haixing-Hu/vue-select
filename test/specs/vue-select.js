@@ -1,6 +1,8 @@
 var assert = require("assert");
 var Vue = require("vue");
 var Demo = require("../../demo/demo.vue");
+var VueI18n = require("../../lib/vue-i18n-plugin/src/vue-i18n.js");
+var VueSelect = require("../../src/vue-select.js");
 
 var getVM = function(rootId, initResult1, initResult2, initResult3) {
   return Vue.extend({
@@ -372,4 +374,44 @@ describe("vue-select", function() {
       });
     });
   });
+
+  // FIXME: I don't know how to get the options of a select2 control,
+  // so the following test cannot be performed.
+
+  // describe("test the i18n plugin", function() {
+  //   before(function() {
+  //     Vue.use(VueI18n, {
+  //       baseUrl: "/base/test/specs/i18n"
+  //     });
+  //   });
+  //   var VM = Vue.extend({
+  //     template: "<div><vue-select v-ref='select' options='{{options}}' model='{{@ result}}'></vue-select></div>",
+  //     el: function() {
+  //       var el = document.createElement("div");
+  //       el.id = "test-i18n";
+  //       document.body.appendChild(el);
+  //       return el;
+  //     },
+  //     components: {
+  //       "vue-select": VueSelect
+  //     },
+  //     data: function() {
+  //       return {
+  //         options: ["value1", "value2", "value3"],
+  //         result: null
+  //       };
+  //     },
+  //     beforeCompile: function() {
+  //       this.$setLanguage("zh-CN");
+  //     }
+  //   });
+  //   it.only("test language", function(done) {
+  //     var vm = new VM();
+  //     vm.$nextTick(function() {
+  //       var select = vm.$.select.control;
+  //       assert.equal(select.options.get("language"), "zh-CN");
+  //       done();
+  //     });
+  //   });
+  // });
 });
