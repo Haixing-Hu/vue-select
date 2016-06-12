@@ -282,13 +282,13 @@ $ gulp test:coveralls
 You can also run `bower install` and `gulp build` together with the following
 command:
 ```shell
-npm build
+npm run build
 ```
 
 Or run `bower install` and `gulp test:coveralls` together with the following
 command:
 ```shell
-npm test
+npm run test
 ```
 
 # License
