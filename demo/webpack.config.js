@@ -13,17 +13,29 @@ var VueLoader = require('vue-loader');
 
 module.exports = {
   entry: {
-    "demo": path.join(__dirname, "demo.js")
+    "demo": path.join(__dirname, "demo.js"),
+    "issue7": path.join(__dirname, "issue7.js"),
   },
   module: {
     loaders: [
-      { test: /\.vue$/, loader: "vue" }
+      { test: /\.vue$/, loader: "vue" },
+      {
+        test: /\.js$/,
+        // excluding some local linked packages.
+        // for normal use cases only node_modules is needed.
+        exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+        loader: 'babel'
+      }
     ]
   },
   vue: {
     loaders: {
       html: "raw"    // use raw-loader to process HTML
     }
+  },
+  babel: {
+    presets: ['es2015'],
+    plugins: ['transform-runtime']
   },
   resolve: {
     root: [__dirname],

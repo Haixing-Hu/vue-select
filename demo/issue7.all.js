@@ -51,16 +51,23 @@
 
 	"use strict";
 
-	var Vue = __webpack_require__(1);
+	var _vue = __webpack_require__(1);
 
-	var vm = new Vue({
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _vueSelect = __webpack_require__(5);
+
+	var _vueSelect2 = _interopRequireDefault(_vueSelect);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var vm = new _vue2.default({
 	  components: {
-	    "demo": __webpack_require__(3)
+	    "vue-select": _vueSelect2.default
 	  },
 	  data: {
-	    result1: null,
-	    result2: "value2",
-	    result3: "value6"
+	    opt: ['foo', 'bar', 'baz', 'yep'],
+	    val: "foo"
 	  }
 	});
 
@@ -10108,155 +10115,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(4)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
-	  console.warn("[vue-loader] demo.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(7)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
-	}
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
-	  var id = "./demo.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	// <template>
-	//   <div class="form-horizontal">
-	//     <div class="form-group">
-	//       <label for="select1" class="col-sm-3 control-label">
-	//         A simple select:
-	//       </label>
-	//       <div class="col-sm-5">
-	//         <vue-select class="vue-select1" name="select1"
-	//                     :options="options1" :model.sync="result1"
-	//                     language="">
-	//         </vue-select>
-	//       </div>
-	//       <div class="col-sm-4">
-	//         <p class="form-control-static">
-	//           Selected Result: <span class="vue-result1">{{result1}}</span>
-	//         </p>
-	//       </div>
-	//     </div>
-	//     <div class="form-group">
-	//       <label for="select2" class="col-sm-3 control-label">
-	//         A searchable select with names and localized in en-US:
-	//       </label>
-	//       <div class="col-sm-5">
-	//         <vue-select class="vue-select2" name="select2"
-	//                 :options="options2" :model.sync="result2"
-	//                 :searchable="true" language="en-US">
-	//         </vue-select>
-	//       </div>
-	//       <div class="col-sm-4">
-	//         <p class="form-control-static">
-	//           Selected Result: <span class="vue-result2">{{result2}}</span>
-	//         </p>
-	//       </div>
-	//     </div>
-	//     <div class="form-group">
-	//       <label for="select3" class="col-sm-3 control-label">
-	//         A searchable select with groups and localized in zh-CN:
-	//       </label>
-	//       <div class="col-sm-5">
-	//         <vue-select class="vue-select3" name="select3"
-	//                     :options="options3" :model.sync="result3"
-	//                     :searchable="true" language="zh-CN">
-	//         </vue-select>
-	//       </div>
-	//       <div class="col-sm-4">
-	//         <p class="form-control-static">
-	//           Selected Result: <span class="vue-result3">{{result3}}</span>
-	//         </p>
-	//       </div>
-	//     </div>
-	//   </div>
-	// </template>
-	//
-	// <script>
-	module.exports = {
-	  components: {
-	    "vue-select": __webpack_require__(5)
-	  },
-	  data: function data() {
-	    return {
-	      options1: ["value1", "value2", "value3"],
-	      options2: [{
-	        text: "name1",
-	        value: "value1"
-	      }, {
-	        text: "name2",
-	        value: "value2"
-	      }, {
-	        text: "name3",
-	        value: "value3"
-	      }],
-	      options3: [{
-	        label: "group1",
-	        options: [{
-	          text: "name1",
-	          value: "value1"
-	        }, {
-	          text: "name2",
-	          value: "value2"
-	        }, {
-	          text: "name3",
-	          value: "value3"
-	        }]
-	      }, {
-	        label: "group2",
-	        options: [{
-	          text: "name4",
-	          value: "value4"
-	        }, {
-	          text: "name5",
-	          value: "value5"
-	        }, {
-	          text: "name6",
-	          value: "value6"
-	        }]
-	      }]
-	    };
-	  },
-	  props: {
-	    result1: {
-	      required: true,
-	      twoWay: true
-	    },
-	    result2: {
-	      required: true,
-	      twoWay: true
-	    },
-	    result3: {
-	      required: true,
-	      twoWay: true
-	    }
-	  }
-	};
-	// </script>
-
-/***/ },
+/* 3 */,
+/* 4 */,
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -11433,12 +11293,6 @@
 	  // If it doesn't contain the term, don't return anything
 	  return null;
 	});
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"form-horizontal\">\n  <div class=\"form-group\">\n    <label for=\"select1\" class=\"col-sm-3 control-label\">\n      A simple select:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select1\" name=\"select1\"\n                  :options=\"options1\" :model.sync=\"result1\"\n                  language=\"\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result1\">{{result1}}</span>\n      </p>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"select2\" class=\"col-sm-3 control-label\">\n      A searchable select with names and localized in en-US:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select2\" name=\"select2\"\n              :options=\"options2\" :model.sync=\"result2\"\n              :searchable=\"true\" language=\"en-US\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result2\">{{result2}}</span>\n      </p>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"select3\" class=\"col-sm-3 control-label\">\n      A searchable select with groups and localized in zh-CN:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select3\" name=\"select3\"\n                  :options=\"options3\" :model.sync=\"result3\"\n                  :searchable=\"true\" language=\"zh-CN\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result3\">{{result3}}</span>\n      </p>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }
 /******/ ]);
