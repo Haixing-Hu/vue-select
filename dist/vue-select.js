@@ -1,5 +1,5 @@
 /*!
- * vue-select2 v0.2.6
+ * vue-select2 v0.2.7
  * (c) 2016 Haixing Hu
  * Released under the MIT License.
  */
@@ -89,9 +89,9 @@
 	  replace: true,
 	  inherit: false,
 	  template: "<select class='form-control' v-model='model' :name='name' style='width: 100%'>"
-	          +   "<option v-if='optionsType === \"values\"' v-for='val in options' :value='val'>{{val}}</option>"
-	          +   "<option v-if='optionsType === \"options\"' v-for='opt in options' :value='opt.value'>{{opt.text}}</option>"
-	          +   "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' :label='group.label'>"
+	          +   "<template v-if='optionsType === \"values\"'><option v-for='val in options' :value='val'>{{val}}</option></template>"
+	          +   "<template v-if='optionsType === \"options\"'><option v-for='opt in options' :value='opt.value'>{{opt.text}}</option></template>"
+	          +   "<template v-if='optionsType === \"groups\"'><optgroup v-for='group in options' :label='group.label'></optgroup>"
 	          +     "<option v-for='opt in group.options' :value='opt.value'>{{opt.text}}</option>"
 	          +   "</optgroup>"
 	          + "</select>",
