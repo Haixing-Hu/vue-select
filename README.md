@@ -178,7 +178,13 @@ value of the model will be set to `null` instead of an empty string.
 
 ## `searchable`
 
-The optional flag indicates whether to show the search box.
+The optional flag indicates whether to show the search box. The default value is
+false.
+
+## `multiple`
+
+The optional flag indicates whether to use a multiple select control. The default
+value is false.
 
 ## `language`
 
