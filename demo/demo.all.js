@@ -60,7 +60,8 @@
 	  data: {
 	    result1: null,
 	    result2: "value2",
-	    result3: "value6"
+	    result3: "value6",
+	    result4: ["value1", "value2"]
 	  }
 	});
 
@@ -10191,6 +10192,22 @@
 	//         </p>
 	//       </div>
 	//     </div>
+	//     <div class="form-group">
+	//       <label for="select4" class="col-sm-3 control-label">
+	//         A multiple select:
+	//       </label>
+	//       <div class="col-sm-5">
+	//         <vue-select class="vue-select4" name="select4"
+	//                     :options="options4" :model.sync="result4"
+	//                     :searchable="false" :multiple="true">
+	//         </vue-select>
+	//       </div>
+	//       <div class="col-sm-4">
+	//         <p class="form-control-static">
+	//           Selected Result: <span class="vue-result4">{{result4}}</span>
+	//         </p>
+	//       </div>
+	//     </div>
 	//   </div>
 	// </template>
 	//
@@ -10236,7 +10253,8 @@
 	          text: "name6",
 	          value: "value6"
 	        }]
-	      }]
+	      }],
+	      options4: ["value1", "value2", "value3", "value4", "value5", "value6", "value7", "value8", "value9"]
 	    };
 	  },
 	  props: {
@@ -10249,6 +10267,10 @@
 	      twoWay: true
 	    },
 	    result3: {
+	      required: true,
+	      twoWay: true
+	    },
+	    result4: {
 	      required: true,
 	      twoWay: true
 	    }
@@ -10286,6 +10308,9 @@
 	 * @param matchValue
 	 *    the optional flag indicates whether the searching should match both the
 	 *    texts and values of options. Default value is true.
+	 * @param multiple
+	 *    indicates whether the selection control support multiple values. Default
+	 *    value is false.
 	 * @param language
 	 *    the optional code of language used by the select2 plugin. If it is not set,
 	 *    and the [vue-i18n](https://github.com/Haixing-Hu/vue-i18n) plugin is used,
@@ -10301,7 +10326,7 @@
 	module.exports = {
 	  replace: true,
 	  inherit: false,
-	  template: "<select class='form-control' v-model='model' :name='name' style='width: 100%'>" + "<option v-if='optionsType === \"values\"' v-for='val in options' :value='val'>{{val}}</option>" + "<option v-if='optionsType === \"options\"' v-for='opt in options' :value='opt.value'>{{opt.text}}</option>" + "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' :label='group.label'>" + "<option v-for='opt in group.options' :value='opt.value'>{{opt.text}}</option>" + "</optgroup>" + "</select>",
+	  template: "<select class='form-control' v-model='model' :name='name' :multiple='multiple' style='width: 100%'>" + "<option v-if='optionsType === \"values\"' v-for='val in options' :value='val'>{{val}}</option>" + "<option v-if='optionsType === \"options\"' v-for='opt in options' :value='opt.value'>{{opt.text}}</option>" + "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' :label='group.label'>" + "<option v-for='opt in group.options' :value='opt.value'>{{opt.text}}</option>" + "</optgroup>" + "</select>",
 	  props: {
 	    options: {
 	      type: Array,
@@ -10330,6 +10355,11 @@
 	      type: String,
 	      required: false,
 	      default: ""
+	    },
+	    multiple: {
+	      type: Boolean,
+	      required: false,
+	      default: false
 	    },
 	    theme: {
 	      type: String,
@@ -11371,17 +11401,7 @@
 
 	// The following matcher is a modification version of the default matcher
 	// of select2
-	module.exports = matcher = function (_matcher) {
-	  function matcher(_x, _x2) {
-	    return _matcher.apply(this, arguments);
-	  }
-
-	  matcher.toString = function () {
-	    return _matcher.toString();
-	  };
-
-	  return matcher;
-	}(function (params, data) {
+	function matcher(params, data) {
 	  // Always return the object if there is nothing to compare
 	  if ($.trim(params.term) === '') {
 	    return data;
@@ -11432,13 +11452,15 @@
 
 	  // If it doesn't contain the term, don't return anything
 	  return null;
-	});
+	}
+
+	module.exports = matcher;
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"form-horizontal\">\n  <div class=\"form-group\">\n    <label for=\"select1\" class=\"col-sm-3 control-label\">\n      A simple select:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select1\" name=\"select1\"\n                  :options=\"options1\" :model.sync=\"result1\"\n                  language=\"\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result1\">{{result1}}</span>\n      </p>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"select2\" class=\"col-sm-3 control-label\">\n      A searchable select with names and localized in en-US:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select2\" name=\"select2\"\n              :options=\"options2\" :model.sync=\"result2\"\n              :searchable=\"true\" language=\"en-US\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result2\">{{result2}}</span>\n      </p>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"select3\" class=\"col-sm-3 control-label\">\n      A searchable select with groups and localized in zh-CN:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select3\" name=\"select3\"\n                  :options=\"options3\" :model.sync=\"result3\"\n                  :searchable=\"true\" language=\"zh-CN\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result3\">{{result3}}</span>\n      </p>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "\n<div class=\"form-horizontal\">\n  <div class=\"form-group\">\n    <label for=\"select1\" class=\"col-sm-3 control-label\">\n      A simple select:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select1\" name=\"select1\"\n                  :options=\"options1\" :model.sync=\"result1\"\n                  language=\"\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result1\">{{result1}}</span>\n      </p>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"select2\" class=\"col-sm-3 control-label\">\n      A searchable select with names and localized in en-US:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select2\" name=\"select2\"\n              :options=\"options2\" :model.sync=\"result2\"\n              :searchable=\"true\" language=\"en-US\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result2\">{{result2}}</span>\n      </p>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"select3\" class=\"col-sm-3 control-label\">\n      A searchable select with groups and localized in zh-CN:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select3\" name=\"select3\"\n                  :options=\"options3\" :model.sync=\"result3\"\n                  :searchable=\"true\" language=\"zh-CN\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result3\">{{result3}}</span>\n      </p>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"select4\" class=\"col-sm-3 control-label\">\n      A multiple select:\n    </label>\n    <div class=\"col-sm-5\">\n      <vue-select class=\"vue-select4\" name=\"select4\"\n                  :options=\"options4\" :model.sync=\"result4\"\n                  :searchable=\"false\" :multiple=\"true\">\n      </vue-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <p class=\"form-control-static\">\n        Selected Result: <span class=\"vue-result4\">{{result4}}</span>\n      </p>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }
 /******/ ]);

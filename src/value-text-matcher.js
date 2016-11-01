@@ -852,7 +852,7 @@ function stripDiacritics (text) {
 
 // The following matcher is a modification version of the default matcher
 // of select2
-module.exports = matcher = function(params, data) {
+function matcher(params, data) {
   // Always return the object if there is nothing to compare
   if ($.trim(params.term) === '') {
     return data;
@@ -904,3 +904,5 @@ module.exports = matcher = function(params, data) {
   // If it doesn't contain the term, don't return anything
   return null;
 }
+
+module.exports = matcher;

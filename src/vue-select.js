@@ -22,6 +22,9 @@ var DEFAULT_LANGUAGE = "en-US";
  * @param matchValue
  *    the optional flag indicates whether the searching should match both the
  *    texts and values of options. Default value is true.
+ * @param multiple
+ *    indicates whether the selection control support multiple values. Default
+ *    value is false.
  * @param language
  *    the optional code of language used by the select2 plugin. If it is not set,
  *    and the [vue-i18n](https://github.com/Haixing-Hu/vue-i18n) plugin is used,
@@ -37,7 +40,7 @@ var DEFAULT_LANGUAGE = "en-US";
 module.exports = {
   replace: true,
   inherit: false,
-  template: "<select class='form-control' v-model='model' :name='name' style='width: 100%'>"
+  template: "<select class='form-control' v-model='model' :name='name' :multiple='multiple' style='width: 100%'>"
           +   "<option v-if='optionsType === \"values\"' v-for='val in options' :value='val'>{{val}}</option>"
           +   "<option v-if='optionsType === \"options\"' v-for='opt in options' :value='opt.value'>{{opt.text}}</option>"
           +   "<optgroup v-if='optionsType === \"groups\"' v-for='group in options' :label='group.label'>"
@@ -72,6 +75,11 @@ module.exports = {
       type: String,
       required: false,
       default: ""
+    },
+    multiple: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     theme: {
       type: String,

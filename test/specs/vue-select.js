@@ -4,9 +4,14 @@ var Demo = require("../../demo/demo.vue");
 var VueI18n = require("../../lib/vue-i18n-plugin/src/vue-i18n.js");
 var VueSelect = require("../../src/vue-select.js");
 
-var getVM = function(rootId, initResult1, initResult2, initResult3) {
+var getVM = function(rootId, initResult1, initResult2, initResult3, initResult4) {
   return Vue.extend({
-    template: "<div><demo v-ref:demo :result1.sync='result1' :result2.sync='result2'  :result3.sync='result3'></demo></div>",
+    template: "<div><demo v-ref:demo "
+             + ":result1.sync='result1' "
+             + ":result2.sync='result2' "
+             + ":result3.sync='result3' "
+             + ":result4.sync='result4' "
+             + "></demo></div>",
     el: function() {
       var el = document.createElement("div");
       el.id = rootId;
@@ -20,7 +25,8 @@ var getVM = function(rootId, initResult1, initResult2, initResult3) {
       return {
         result1: initResult1,
         result2: initResult2,
-        result3: initResult3
+        result3: initResult3,
+        result4: initResult4
       };
     }
   });
@@ -29,7 +35,7 @@ var getVM = function(rootId, initResult1, initResult2, initResult3) {
 describe("vue-select", function() {
 
   describe("static render", function() {
-    var VM = getVM("static-render", null, "value2", "value6");
+    var VM = getVM("static-render", null, "value2", "value6", ["value2", "value5"]);
     var vm = new VM();
 
     it("select1", function(done) {
@@ -143,10 +149,56 @@ describe("vue-select", function() {
         done();
       });
     });
+
+
+    it("select4", function(done) {
+      vm.$nextTick(function() {
+        var root = $("#static-render");
+        var select4 = root.find(".vue-select4");
+        assert.equal(select4.prop("tagName"), "SELECT");
+        assert.equal(select4.prop("name"), "select4");
+        var options4 = select4.find("option");
+        assert.equal(options4.length, 9);
+        assert.equal(options4[0].text, "value1");
+        assert.equal(options4[0].value, "value1");
+        assert.equal(options4[1].text, "value2");
+        assert.equal(options4[1].value, "value2");
+        assert.equal(options4[2].text, "value3");
+        assert.equal(options4[2].value, "value3");
+        assert.equal(options4[3].text, "value4");
+        assert.equal(options4[3].value, "value4");
+        assert.equal(options4[4].text, "value5");
+        assert.equal(options4[4].value, "value5");
+        assert.equal(options4[5].text, "value6");
+        assert.equal(options4[5].value, "value6");
+        assert.equal(options4[6].text, "value7");
+        assert.equal(options4[6].value, "value7");
+        assert.equal(options4[7].text, "value8");
+        assert.equal(options4[7].value, "value8");
+        assert.equal(options4[8].text, "value9");
+        assert.equal(options4[8].value, "value9");
+
+        // check the value of the select4
+        assert.deepEqual(select4.val(), ["value2", "value5"]);
+
+        // check the text content of select4
+        var select4Text = select4.next(".select2").find(".select2-selection__rendered");
+        assert.equal(select4Text.text(), "×value2×value5");
+
+        //  check results
+        var result4 = root.find(".vue-result4");
+        assert.equal(result4.text(), "value2,value5");
+
+        // check vm data
+        assert.deepEqual(vm.result4, ["value2", "value5"]);
+
+        done();
+      });
+    });
   });
 
   describe("change the model", function() {
-    var VM = getVM("change-model", "", "value2", "value6");
+    var VM = getVM("change-model", "", "value2", "value6", ["value8", "value1"]);
     var vm = new VM();
     it("select1", function(done) {
       vm.$nextTick(function() {
@@ -204,10 +256,29 @@ describe("vue-select", function() {
         });
       });
     });
+
+
+    it("select4", function(done) {
+      vm.$nextTick(function() {
+        var root = $("#change-model");
+        var select4 = root.find(".vue-select4");
+        var select4Text = select4.next(".select2").find(".select2-selection__rendered");
+        assert.deepEqual(select4.val(), ["value1", "value8"]);
+        assert.equal(select4Text.text(), "×value1×value8");
+        // change the vm
+        vm.result4 = ["value3"];
+        vm.$nextTick(function() {
+          assert.equal(select4.val(), "value3");
+          assert.equal(select4Text.text(), "×value3");
+          done();
+        });
+      });
+    });
+
   });
 
   describe("change the selection", function() {
-    var VM = getVM("change-selection", "", "value2", "value6");
+    var VM = getVM("change-selection", "", "value2", "value6", []);
     var vm = new VM();
 
     it("select1", function(done) {
@@ -265,10 +336,31 @@ describe("vue-select", function() {
         });
       });
     });
+
+
+    it("select4", function(done) {
+      vm.$nextTick(function() {
+        var root = $("#change-selection");
+        var select4 = root.find(".vue-select4");
+        var select4Text = select4.next(".select2").find(".select2-selection__rendered");
+        assert.equal(select4.val(), null);
+        assert.equal(select4Text.text(), "");
+        // change the selection
+        select4.val("value4").trigger("change");
+        vm.$nextTick(function() {
+          assert.equal(select4.val(), "value4");
+          assert.equal(select4Text.text(), "×value4");
+          assert.deepEqual(vm.result4, ["value4"]);
+          done();
+        });
+      });
+    });
+
+
   });
 
   describe("change the options", function() {
-    var VM = getVM("change-options", "value1", "value2", "value6");
+    var VM = getVM("change-options", "value1", "value2", "value6", []);
     var vm = new VM();
 
     it("select1", function(done) {

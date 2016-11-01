@@ -7,7 +7,8 @@ var vm = new Vue({
   data: {
     result1: null,
     result2: "value2",
-    result3: "value6"
+    result3: "value6",
+    result4: ["value1", "value2"]
   }
 });
 

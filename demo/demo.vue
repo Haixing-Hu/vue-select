@@ -48,6 +48,22 @@
         </p>
       </div>
     </div>
+    <div class="form-group">
+      <label for="select4" class="col-sm-3 control-label">
+        A multiple select:
+      </label>
+      <div class="col-sm-5">
+        <vue-select class="vue-select4" name="select4"
+                    :options="options4" :model.sync="result4"
+                    :searchable="false" :multiple="true">
+        </vue-select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">
+          Selected Result: <span class="vue-result4">{{result4}}</span>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -97,7 +113,18 @@ module.exports = {
           text: "name6",
           value: "value6"
         }]
-      }]
+      }],
+      options4: [
+        "value1",
+        "value2",
+        "value3",
+        "value4",
+        "value5",
+        "value6",
+        "value7",
+        "value8",
+        "value9"
+      ],
     };
   },
   props: {
@@ -110,6 +137,10 @@ module.exports = {
       twoWay: true
     },
     result3: {
+      required: true,
+      twoWay: true
+    },
+    result4: {
       required: true,
       twoWay: true
     }
