@@ -106,7 +106,10 @@ module.exports = {
       this.control.removeData("data");  // remove the cached options data
       // note that setting the model will automatically changed in the "change"
       // event of the select2 control
+      this.isChanging = true;
+      this.model = newValue;
       this.control.val(newValue).trigger("change");
+      this.isChanging = false;
     },
     "model": function(val, oldVal) {
       //console.debug("model.change");

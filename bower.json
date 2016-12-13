@@ -1,7 +1,7 @@
 {
   "name": "vue-select",
   "description": "A Vue.js component implementing the select control with the jQuery select2 plugin.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "keywords": [
     "Vue.js",
     "component",
