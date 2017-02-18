@@ -20,7 +20,7 @@ The demo page is [HERE](http://haixing-hu.github.io/vue-select/demo.html).
 - [JQuery](https://github.com/jquery/jquery) `^2.2.4`
 - [Select2](https://github.com/select2/select2) `^4.0.3`
 
-# Instllation
+# Installation
 
 ## npm
 
